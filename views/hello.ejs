@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Main Page</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/hello.css" />
+</head>
+
+<body>
+    <section>
+        <h1 id="title">Hello <span id="id"><%= name %> </span> ! Welcome to your page !
+        </h1>
+    </section>
+    <section>
+        <div id="section-header"><span id="section-header-title">Metrics</span></div>
+        <div id="buttons-list">
+            <button id="show-metrics">
+            Display the metrics
+          </button>
+            <button id="hide-metrics">
+                Hide the metrics
+              </button>
+        </div>
+        <div id="metrics"></div>
+    </section>
+    <section>
+        <div id="buttons-list"></div>
+        <form action="/home" method="GET">
+            <button id="homepage">
+                        <img src="/img/homepage.png" style="vertical-align:middle; margin-right: 1em;" width="30px"><span>Homepage</span>
+                         </button>
+        </form>
+
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function() {
+            $('#show-metrics').click((e) => {
+                $("#metrics").empty();
+                e.preventDefault();
+                $.getJSON("/metrics.json", {}, (data) => {
+                    const content = data.map(d => {
+                        return '| Timestamp: ' + d.timestamp + ', Value: ' + d.value + ' | ';
+                    })
+                    $('#metrics').append(content.join("\n"));
+                });
+            })
+            $('#hide-metrics').click((e) => {
+                $("#metrics").empty();
+            });
+        });
+    </script>
+</body>
+
+</html>
