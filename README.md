@@ -1,2 +1,2 @@
-# ece-typescript-expressjs-part2
+# ece-typescript
 NodeJS Week2 - TypeScript
