@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../views')));
-app.use(favicon(__dirname + '/ts.png'));
+app.use(favicon(__dirname + '/favicon.svg'));
 
 app.get('/home', (req, res) => {
   res.render('home.ejs');
